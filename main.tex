@@ -1,0 +1,110 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% How to use writeLaTeX: 
+%
+% You edit the source code here on the left, and the preview on the
+% right shows you the result within a few seconds.
+%
+% Bookmark this page and share the URL with your co-authors. They can
+% edit at the same time!
+%
+% You can upload figures, bibliographies, custom classes and
+% styles using the files menu.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt]{article}
+
+\usepackage{sbc-template}
+
+\usepackage{graphicx,url}
+
+%\usepackage[brazil]{babel}   
+\usepackage[utf8]{inputenc}
+
+     
+\sloppy
+
+\title{Comparativo entre protocolos de camada de enlace}
+
+\author{Esdras Xavier Raimundo\inst{1} }
+
+
+\address{Católica de Santa Catarina }
+
+\begin{document}
+
+\maketitle
+
+\begin{resumo} 
+  Este meta-artigo serve para descrever de comparar os protocolos das camadas de enlace. Mostrando as diferenças e como que cada um funciona.
+\end{resumo}
+
+\pagebreak
+\section{O que são camadas de enlace} \label{sec:firstpage}
+Dentro da ciência da computação existem diversas áreas, sendo uma das áreas rede de computadores. Esta área normalmente é identifica como camada de enlace de dados ou camada de link de dados, que é uma das sete camadas de modelo OSI. O modelo OSI é o \textit{Open System Interconnection}, que é o Sistema Aberto de Interconexão, o mesmo foi criado em 191 e formalizado em 1983. A ideia do OSI é definir um padrão para protocolos de comunicações dentre os sistemas de redes disponíveis no mundo, ou em até mesmo redes locals (Ethernet), fazendo com que seja garantido a comunicação entre um ou mais dispositivos. Ele divide as redes de computadores em 7 áreas. Ou seja, a camada de enlace é uma dessas 7 áreas, e a mesma implementa diversos protocolos, sendo eles: 802.2(LLC), 802.3(Ethernet), 802.5(Token Ring), 802.11(Wireless), HDLC (High Level Data Link Control), Q.922(Frame Relay Standard), Q.921(ISDN Data Link Standard), HDLC (High Level Data Link Control), 3T9.5, ADCCP(Advanced Data Comunications Control Protocol).
+
+
+\section{Padrões da Camada}
+Os protocolos e padrões desta camada são definidos por empresas de comunicações ou alguma ornização de engenharia (Como ANSI, IEE e ITU). Os serviços e especificações desta camada são geridos por múltiplos padrões de acordo com a tecnologia e o meio físico utilizado e integrado por tais protocolos, sendo alguns deles utilizados para ligar os serviços da camada de enlace com a camada física. Veja abaixo algumas organizações e os protocolos utilizados:
+
+\begin{center}
+\begin{tabular}{ |p{1cm}|p{9cm}|  }
+\hline
+ ISO & HDLC (High Level Data Link Control) \\
+ \hline
+ IEEE & 802.2(LLC), 802.3(Ethernet), 802.5(Token Ring), 802.11(Wireless) \\
+ \hline
+ ITU & Q.922(Frame Relay Standard), Q.921(ISDN Data Link Standard), HDLC (High Level Data Link Control) \\
+ \hline
+ ANSI & 3T9.5, ADCCP(Advanced Data Comunications Control Protocol)) \\ 
+ \hline
+\end{tabular}
+\end{center}
+
+\section{Tipos de enlace}
+\subsection{Enlace ponto a ponto}
+No ponto a ponto mesmo que existam vários hosts conectados, somente haverá comunicação entre uma extremidade do enlace, com outra extremidade do enlace. Um exemplos simples seria o uma chamada via telefone celular, quando uma pessoa liga para outra, somente as duas pessoas estão se comunicando, porém os dados passam por uma central telefonica que possuir diversos usuários e hosts. Protocolos que utilizam esse tipo de comunicação: PPP e HDLC.
+
+\subsection{Enlace broadcast}
+No enlace de broadcast vários dispositivos, tanto remetentes quanto receptores, estão conectados ao um único canal de trasmissão. Um tipíco exemplo de broadcast é a televisão tradicional, onde a mesma é um enlace unidirecional. Como uma analogia, imagine você na sala de aula, onde o meio de transmissão é o ar, nós receptores e remetentes são seus colegas. Para que não exista problema na comunicação, algumas regras são seguidas.
+Ex:
+
+\begin{itemize}
+  \item Não fale até que alguém fale com você.
+  \item Levante a mão se tiver alguma pergunta a fazer.
+  \item Não interrompa uma pessoa quando esta estiver falando.
+\end{itemize}
+
+\subsection{Multiplexação (divisão do canal)}
+Uma forma simples para a comunicação não possuir colisões, seria dividir o tempo de comunicação e entregar para cada um dos nós. Imagine que em uma rede com 10 computadores e um tempo de 20 segundos para comunicação, por rodada. Então ter-se-ia 20 (segundos)/ 10 (computadores), que é igual a 2 segundos por computador.
+
+\subsubsection{TDM (multiplexação por divisão de tempo)}
+Essa multiplexação divide o tempo em quadros temporais, dentro desses quadros existem N compartimentos, onde N é igual ao número de computadores. Para uma dada TDM taxa de transmissão em bits são alocados slots (intervalos) no tempo para cada canal de comunicação.
+
+\subsubsection{FDM (multiplexação por divisão de frequência)}
+Uma divisão semelhante é feita, porém, em vez de espaços iguais de tempo, tem-se faixas de frequência. Essas são técnicas eficientes, levando em consideração que todos os nós transmitem informações freqüentemente. Porém, se em dado momento apenas um nó transmitir informações, este somente o poderá fazer através de sua "faixa", mesmo que ninguém mais transmita absolutamente nada. Dessa forma o canal broadcast fica ocioso em grandes períodos de tempo.
+
+\subsubsection{CDMA (multiplexação por divisão de código)}
+É um sistema de múltiplo acesso que permite a separação de sinais que coincidam no tempo e na frequência. Todos os sinais compartilham o mesmo espectro de frequência, cada sinal é codificado, através de um código específico para cada usuário, e espalhado por toda largura de banda, como um ruído para todos os usuários. A identificação e demodulação do sinal ocorrem no receptor, quando é aplicada uma réplica do código utilizado para o espalhamento de cada sinal na transmissão. Este processo retorna com o sinal de interesse, enquanto descarta todos os outros sinais como sendo interferência.Utilizados no Bluetooth.
+
+
+\subsection{Protocolos de acesso aleatório}
+
+\subsubsection{Slotted ALOHA}
+Um dos protocolos mais simples é o slotted ALOHA. Nesse protocolo, o tempo de transmissão é dividido pelo número de quadro formando intervalos, de fato que um intervalo é igual ao tempo de transmissão de um quadro. Cada nó conhece o início do intervalo. Em cada colisão, todos os nós identificam a mesma antes mesmo do término do intervalo. Quando um nó tem algum quadro para enviar, ele espera até o início do próximo intervalo e o envia, se for detectada colisão, ele espera um tempo aleatório e envia novamente. Note-se que quando um nó quer enviar um quadro ele o envia no primeiro intervalo que aparecer e, se não tiver colisão e for preciso o envio de outro quadro, o nó o fará no próximo intervalo, até que termine os quadros ou que haja uma colisão e tenha que esperar um tempo aleatório. A "chave" desse protocolo é que se vários nós estiverem enviando, os intervalos que houver colisões serão desperdiçados e certos intervalos não serão utilizados, porque o tempo aleatório citado acima tem um caráter probabilístico. Portanto este não é um protocolo tão eficiente para uma rede com muitos nós enviando, sempre, informações.
+
+\subsubsection{ALOHA Puro}
+O Slotted ALOHA precisa que seus nós sincronizem as transmissões de acordo com os intervalos. Porém o primeiro protocolo ALOHA, chamado de ALOHA Puro era descentralizado. Quando um quadro chega à camada física para ser enviado, ele o é imediatamente. Então, se houver colisão, um tempo aleatório é esperado para enviar novamente.
+
+\subsubsection{CSMA/CD}
+Os protocolos descritos anteriormente, durante uma transmissão de dados, no caso de algum outro nó estiver se comunicando, interrompem a comunicação por um tempo aleatório. O CSMA é diferente, ele escuta o canal (detecção de portadora) antes de enviar as informações. Caso algum outro nó o esteja fazendo ele espera um tempo para então voltar a escutar o canal broadcast. Outra característica importante é, se quando o canal estiver ocioso e o nó for transmitir e outro o fizer no mesmo momento, o CSMA realiza a detecção de colisão, fazendo com que pare a transmissão, até que algum protocolo determine quando deve tentar transmitir novamente.
+
+
+\subsection{Protocolos de revezamento}
+\subsubsection{Polling}
+O protocolo de polling requer que um dos nós seja nomeado o nó mestre. Esse nó escolhe de forma circular os nós que precisam transmitir. Quando o nó 1 for transmitir, o nó mestre o concede um determinado número de quadros para transmitir, acabando essa transmissão, o nó 2 inicia e assim sucessivamente. Os intervalos vazios característicos dos protocolos de acesso aleatório já não existem mais, porém não é seguro colocar as transmissões da rede nas mãos de um nó. Porque se este falhar, toda a rede para. Outro problema é o tempo de escolha do nó que deverá transmitir. Esse tempo é bastante significativo.
+
+\subsubsection{Token}
+No protocolo de passagem de permissão, por token, essas passagens de permissão são distribuídos por todos os nós. Por exemplo, o nó 1 poderá enviar permissão ao nó 2, o nó 2 poderá enviar permissão ao nó 3, o nó N poderá enviar permissão ao nó 1. Quando um nó recebe a permissão, ele a segura se precisar enviar alguma informação, se não, ele passa para o próximo nó.
+
+\end{document}
